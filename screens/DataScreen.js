@@ -1,0 +1,136 @@
+import React from 'react';
+import { StyleSheet, Text, View,TextInput,TouchableOpacity } from 'react-native';
+import db from '../Config'
+
+export default class DataScreen extends React.Component{
+    constructor(){
+        super();
+        this.state={
+            Name:"",
+            MiddleName:"",
+            LastName:"",
+            Address:"",
+            Gender:"",
+            CollegeFor:""
+        }
+    }
+
+    getData=()=>{
+        db.collection('users').add()
+        this.setState({
+            Name:this.state.Name,
+            MiddleName:this.state.MiddleName,
+            LastName:this.state.LastName,
+            Address:this.state.Address,
+            Gender:this.state.Gender,
+            CollegeFor:this.state.CollegeFor
+        })
+    }
+
+    render(){
+        return(
+            <View style={styles.container}>
+                <TextInput
+                style={styles.TextInput}
+                placeholder={"Name"}
+                maxLength={8}
+                onChangeText={(text)=>{
+                    this.setState({
+                        Name:text
+                    })
+                }}
+                />
+                <TextInput
+                style={styles.TextInput}
+                placeholder={"MiddleName"}
+                maxLength={8}
+                onChangeText={(text)=>{
+                    this.setState({
+                        MiddleName:text
+                    })
+                }}
+                />
+                <TextInput
+                style={styles.TextInput}
+                placeholder={"LastName"}
+                maxLength={8}
+                onChangeText={(text)=>{
+                    this.setState({
+                     LastName:text
+                    })
+                }}
+                />
+                <TextInput
+                style={styles.TextInput}
+                placeholder={"Address"}
+                multiline={true}
+                maxLength={8}
+                onChangeText={(text)=>{
+                    this.setState({
+                        Address:text
+                    })
+                }}
+                />
+                <TextInput
+                style={styles.TextInput}
+                placeholder={"Gender"}
+                maxLength={8}
+                onChangeText={(text)=>{
+                    this.setState({
+                        Gender:text
+                    })
+                }}
+                />
+                <TextInput
+                style={styles.TextInput}
+                placeholder={"CollegeFor"}
+                maxLength={8}
+                onChangeText={(text)=>{
+                    this.setState({
+                        CollegeFor:text
+                    })
+                }}
+                />
+                <View>
+                  <TouchableOpacity style={styles.button}
+                  onPress={()=>{
+                      this.props.navigation.navigate('CollegeSearchScreen')
+                  }}>
+                      <Text style={styles.text}>College</Text>           
+                  </TouchableOpacity>      
+                </View>    
+            </View>    
+        )
+    }
+}
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        alignItems:"center",
+        justifyContent:"center"
+    },
+    TextInput:{
+        width:"75%",
+        height:35,
+        alignSelf:"center",
+        borderRadius:10,
+        borderWidth:1,
+        marginTop:20,
+        padding:10
+    },
+    button:{
+        width:200,
+        height:40,
+        alignItems:"center",
+        justifyContent:"center",
+        borderWidth:1,
+        borderRadius:10,
+        marginTop:30
+    },
+    text:{
+        color:'#ff5722',
+        fontSize:15,
+        fontWeight:"bold"
+    }
+})
